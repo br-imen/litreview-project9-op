@@ -1,6 +1,11 @@
+from django.contrib.auth.models import AbstractUser 
+
 from django.db import models
 
-# Create your models here.
-class user (models.Model):
-    name = models.fields.CharField(max_length = 50)
-    password = models.fields.CharField(min_length = 8)
+
+# user modal.
+class CustomUser(AbstractUser):
+    username = models.fields.CharField(unique=True, max_length=8)
+
+    USERNAME_FIELD = 'username'
+   

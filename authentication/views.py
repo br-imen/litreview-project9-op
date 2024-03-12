@@ -1,6 +1,35 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from . import forms
+from django.contrib.auth import login, authenticate, logout 
+from django.urls import reverse_lazy
+from django.views import generic
 
-# Create your views here.
-def hello(request):
-    return HttpResponse("<h1> Hello </h1>")
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')
+
+
+def login_page(request):
+    form = forms.LoginForm()
+    message = ''
+    if request.method == 'POST':
+        form = forms.LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password'],
+            )
+            if user is not None:
+                login(request, user)
+                return redirect('homepage')
+            else:
+                message = 'Identifiants invalides.'
+    return render(
+        request, 'authentication/login.html', context={'form': form, 'message': message})
+
+
+class SignUpView(generic.CreateView):
+    form_class = forms.SignUpForm
+    success_url = reverse_lazy("login")
+    template_name = "authentication/signup.html"

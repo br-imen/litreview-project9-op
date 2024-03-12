@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>litreview</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<body>
+{% block content %}{% endblock content %}
+{% if user.is_authenticated %}
+<p>Vous êtes connecté en tant que {{ request.user }}. <a href="{% url 'logout' %}">Se déconnecter</a>
+{% endif %}
+
+</body>
+</html>
