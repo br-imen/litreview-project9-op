@@ -27,9 +27,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Photo configuration
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
+
+# Login 
+LOGIN_URL = 'login'
+
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -128,4 +134,3 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_URL = 'login'

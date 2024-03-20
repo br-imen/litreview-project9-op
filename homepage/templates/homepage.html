@@ -1,4 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-    <p>Vous êtes connecté !</p>
+    <a href="/ticket-upload/">[Publier une demande de critique]</a>
+    <br><br><br><br><br>
+    {% for ticket in tickets %}
+        {% if ticket.image %}
+        <img src="{{ MEDIA_URL }}{{ ticket.image.url}}">
+        {% endif %}
+        <br>
+        <p>Title: {{ ticket.title }}</p>
+        <p>Description: {{ ticket.description }}</p>
+        <p>Date: {{ ticket.time_created }}</p>
+        <a href="{% url 'ticket_update' ticket.id %}">[Modifier]</a>
+        <a href="{% url 'ticket_delete' ticket.id %}">[Supprimer]</a>
+        <a href="{% url 'review_upload' ticket.id %}">[Publier une critique]</a>
+        <hr>
+        <!-- <h3>Les critiques</h3>
+        <p>headline: {{ review.headline }}</p>
+        <p>body: {{ review.body }}</p>
+        <p>Date: {{ review.time_created }}</p>
+        <p>rating: {{ review.rating }}</p> -->
+        <br><br><br>
+
+    {% endfor %}
+
 {% endblock content %}

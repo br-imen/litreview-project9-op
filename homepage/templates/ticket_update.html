@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Mise à jour de la demande de critique</h2>
+    <form method="post" enctype="multipart/form-data"
+    enctype="multipart/form-data" action="{% url 'ticket_update' id=ticket.id %}">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Confirmer</button>
+    </form>
+    <br> <br> <br>
+    <a href={{request.META.HTTP_REFERER}}>[Retouner]</a>
+    
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2>Créer une demande de critique</h2>
+    <form method="post" enctype="multipart/form-data" action="{% url 'ticket_upload'%}">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Publier</button>
+    </form>
+    <a href="{{request.META.HTTP_REFERER}}">[Retouner]</a>
+
+{% endblock content %}

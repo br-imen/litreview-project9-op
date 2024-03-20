@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2>Vous êtes en train de poster en réponse à</h2>
+    {% if ticket.image %}
+        <img src="{{ MEDIA_URL }}{{ ticket.image.url}}">
+        {% endif %}
+        <br>
+        <p>Title: {{ ticket.title }}</p>
+        <p>Description: {{ ticket.description }}</p>
+        <p>Date: {{ ticket.time_created }}</p>
+    <hr>
+    <h3>Entrez ici votre critique</h3>
+    <form method="post" enctype="multipart/form-data" action="{% url 'review_upload' id=ticket.id %}">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Publier</button>
+    </form>
+    <br>
+    <a href="{{request.META.HTTP_REFERER}}">[Retouner]</a>
+
+{% endblock content %}

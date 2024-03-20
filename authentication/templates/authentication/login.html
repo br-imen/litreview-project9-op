@@ -1,10 +1,12 @@
 {% extends 'authentication/base.html' %}
 {% block content %}
-<p>{{message}}</p>
 <form method="post">
     {{ form.as_p }}
     {% csrf_token %}
     <button type="submit">Se connecter</button>  
 </form>
-<button href="/signup">registration</button>
+<p>{{message}}</p>
+<br><br><br>
+<a class="btn btn-primary" href="/signup">[S'inscrire]</a>
+
 {% endblock content %}

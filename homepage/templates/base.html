@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <body>
-{% block content %}{% endblock content %}
 {% if user.is_authenticated %}
-<p>Vous êtes connecté en tant que {{ request.user }}. <a href="{% url 'logout' %}">Se déconnecter</a>
+<p>Vous êtes connecté en tant que {{ request.user }}. <a href="{% url 'logout' %}">[Se déconnecter]</a>
 {% endif %}
+<br><br><br><br><br>
+{% block content %}{% endblock content %}
+
 
 </body>
 </html>
